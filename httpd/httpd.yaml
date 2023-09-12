@@ -1,28 +1,20 @@
-apiVersion: argoproj.io/v1alpha1     
-kind: Rollout  
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: rollout-bluegreen
+  name: nginx-deployment
+  namespace: dev
 spec:
-  replicas: 2
-  revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: rollout-bluegreen
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: rollout-bluegreen
+        app: nginx
     spec:
       containers:
-      - name: rollouts-demo
-        # image: argoproj/rollouts-demo:blue
-        # image: argoproj/rollouts-demo:green
+      - name: nginx
         image: argoproj/rollouts-demo:yellow
-        imagePullPolicy: Always
         ports:
-        - containerPort: 8080
-  strategy:
-    blueGreen: 
-      activeService: rollout-bluegreen-active 
-      previewService: rollout-bluegreen-preview
-      autoPromotionEnabled: false
+        - containerPort: 80
