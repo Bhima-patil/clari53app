@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginxsvc
+  name: blue-yellow
 spec:
   selector:
-    app: web
+    app: rollout-bluegreen
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8080
+    targetPort: 8080
   type: NodePort
