@@ -1,12 +1,15 @@
-kind: Service
 apiVersion: v1
+kind: 
+namespace: dev
 metadata:
-  name: rollout-green-active
+  name: greendep
+  labels:
+    app: nginx
 spec:
   selector:
-    app: rollout-bluegreen
+    app: nginx
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-  type: NodePort
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  type: ClusterIP
