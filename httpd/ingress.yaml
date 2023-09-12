@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    annotations:
+      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+      alb.ingress.kubernetes.io/subnets: subnet-044bb4339203a71ec, subnet-0355ede7216c837fd, subnet-07149bc448449f47f
+      alb.ingress.kubernetes.io/tags: Environment=POC,Team=devops
+      #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:594291254240:certificate/7179d869-18ab-4022-af48-42ec2ccf2c0e
+      #alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
+      alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:eu-central-1:594291254240:regional/webacl/test/e46db8ae-884e-4576-89b8-25750d0f4eaf
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/scheme: internet-facing # internal
+    name: test
+    namespace: uat
+spec:
+    ingressClassName: alb
+    rules:
+     - http:
+        paths:
+        - path: /
+          backend:
+            service:
+              name: httpd
+              port:
+                number: 80
+          pathType: Prefix
