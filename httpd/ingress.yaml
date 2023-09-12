@@ -8,7 +8,7 @@ metadata:
       #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:594291254240:certificate/7179d869-18ab-4022-af48-42ec2ccf2c0e
       #alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-2-Ext-2018-06
       alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:eu-central-1:594291254240:regional/webacl/test/e46db8ae-884e-4576-89b8-25750d0f4eaf
-      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/scheme: internet-facing # internal
     name: test
